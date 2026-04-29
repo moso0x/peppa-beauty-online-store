@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Peppa Beauty</title>
+    <meta name="description" content="Luxurious Beauty &  Skincare products" />
+    <meta name="author" content="Peppa Beauty" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- Floating Contact Icons (Self-Injecting) -->
+<!-- Floating Contact Icons -->
+<style>
+  .floating-icons {
+    position: fixed;
+    bottom: 30px;
+    right: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999999;
+  }
+  .floating-icons .float-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+  }
+  .floating-icons .float-btn img {
+    width: 26px;
+    height: 26px;
+  }
+  .floating-icons .float-btn:hover {
+    transform: scale(1.12);
+    box-shadow: 0px 6px 14px rgba(0,0,0,0.4);
+  }
+  .whatsapp { background: #25D366; }
+  .call { background: #0077B5; } /* blue-ish for call */
+  .email { background: #EA4335; }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const container = document.createElement("div");
+    container.className = "floating-icons";
+
+    container.innerHTML = `
+      <a href="https://wa.me/254704904678" target="_blank" class="float-btn whatsapp">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg" alt="WhatsApp"/>
+      </a>
+ 
+      
+    `;
+
+    document.body.appendChild(container);
+  });
+</script>
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
