@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Heart, Share2 } from "lucide-react";
+import { Heart, Share2, ShoppingCart } from "lucide-react";
 import toast from "react-hot-toast";
 
+/* images */
 import cleanser from "@/assets/skincare/cleanser.jpg";
 import vitaminC from "@/assets/skincare/vitamin-c-serum.jpg";
 import moisturizer from "@/assets/skincare/moisturizer.jpg";
@@ -16,189 +17,183 @@ import acneSerum from "@/assets/skincare/acne-serum.jpg";
 import beautySet from "@/assets/skincare/beauty-set.jpg";
 
 const features = [
-  {
-    title: "Hydrating Facial Cleanser",
-    price: "From Ksh. 1,850",
-    image: cleanser
-  },
-  {
-    title: "Vitamin C Brightening Serum",
-    price: "From Ksh. 3,200",
-    image: vitaminC
-  },
-  {
-    title: "Luxury Daily Moisturizer",
-    price: "From Ksh. 2,950",
-    image: moisturizer
-  },
-  {
-    title: "SPF 50 Radiance Sunscreen",
-    price: "From Ksh. 2,600",
-    image: sunscreen
-  },
-  {
-    title: "Rose Water Balancing Toner",
-    price: "From Ksh. 1,650",
-    image: toner
-  },
-  {
-    title: "Glow Renewal Face Mask",
-    price: "From Ksh. 2,300",
-    image: faceMask
-  },
-  {
-    title: "Revitalizing Eye Cream",
-    price: "From Ksh. 3,450",
-    image: eyeCream
-  },
-  {
-    title: "Nourishing Body Oil",
-    price: "From Ksh. 2,100",
-    image: bodyOil
-  },
-  {
-    title: "Clarifying Acne Treatment Serum",
-    price: "From Ksh. 2,850",
-    image: acneSerum
-  },
-  {
-    title: "Luxury Skincare Gift Set",
-    price: "From Ksh. 5,800",
-    image: beautySet
-  }
+  { title: "Brush Buddies Charcoal Activated Toothpaste", price: "From Ksh. 1,850", image: cleanser },
+  { title: "Curel Hand cream Handbag Size", price: "From Ksh. 850.00", image: vitaminC },
+  { title: "Dermasil Face Cream", price: "From Ksh. 1,400", image: moisturizer },
+  { title: "Old Spice Pure Sport Deoderant Travel size", price: "From Ksh. 1,050", image: sunscreen },
+  { title: "Pro Silk Body Lotion Aloe Vera", price: "From Ksh. 1,400", image: toner },
+  { title: "SPA Scentials Foot Cream", price: "From Ksh. 2,300", image: faceMask },
+  { title: "SPA Scentials Foot Scrub", price: "From Ksh. 3,450", image: eyeCream },
+  { title: "Speed Stick for Ladies", price: "From Ksh. 2,100", image: bodyOil },
+  { title: "SPA Luxury Lotion", price: "From Ksh. 2,850", image: acneSerum },
+  { title: "Speed Stick Irish Spring for Men", price: "From Ksh. 5,800", image: beautySet },
+    { title: "Yardly of London Charcoal Activated for Acne", price: "From Ksh. 5,800", image: beautySet }
 ];
+//  { title: "Luxury Daily Moisturizer", price: "From Ksh. 2,950", image: moisturizer },
+//   { title: "SPF 50 Radiance Sunscreen", price: "From Ksh. 2,600", image: sunscreen },
+//   { title: "Rose Water Toner", price: "From Ksh. 1,650", image: toner },
+//   { title: "Glow Renewal Face Mask", price: "From Ksh. 2,300", image: faceMask },
+//   { title: "Revitalizing Eye Cream", price: "From Ksh. 3,450", image: eyeCream },
+//   { title: "Nourishing Body Oil", price: "From Ksh. 2,100", image: bodyOil },
+//   { title: "Acne Treatment Serum", price: "From Ksh. 2,850", image: acneSerum },
+//   { title: "Luxury Skincare Set", price: "From Ksh. 5,800", image: beautySet }
 
 export const FeaturesSection = () => {
   const [wishlist, setWishlist] = useState<string[]>([]);
 
-  const handleWishlistToggle = (title: string) => {
+  const toggleWishlist = (title: string) => {
     setWishlist((prev) =>
       prev.includes(title)
-        ? prev.filter((item) => item !== title)
+        ? prev.filter((i) => i !== title)
         : [...prev, title]
     );
 
     toast.success(
       wishlist.includes(title)
         ? "Removed from wishlist"
-        : "Added to wishlist ❤️"
+        : "Added to wishlist 💖"
     );
   };
 
-  const handleShare = (title: string) => {
-    const shareUrl = `${window.location.origin}/product/${title
+  const share = (title: string) => {
+    const url = `${window.location.origin}/product/${title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")}`;
 
-    navigator.clipboard.writeText(shareUrl);
-    toast.success("Link copied to clipboard 📋");
+    navigator.clipboard.writeText(url);
+    toast.success("Link copied");
   };
 
   return (
-    <section className="py-16 bg-pink-50">
+    <section className="py-20 bg-[hsl(var(--background))] text-[hsl(var(--foreground))]">
       <div className="container mx-auto px-4">
 
-        {/* Intro */}
+        {/* HEADER */}
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-14"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold">
             Luxury Beauty & Skincare Essentials
           </h2>
 
-          <p className="text-muted-foreground  max-w-3xl mx-auto">
-            Discover premium skincare formulated to hydrate, nourish, protect,
-            and enhance your natural glow — from cleansers and serums to
-            moisturizers, sunscreens and curated beauty collections.
+          <p className="mt-4 max-w-3xl mx-auto text-[hsl(var(--muted-foreground))] leading-7">
+            Discover premium skincare designed to hydrate, nourish, protect and enhance your natural glow.
           </p>
         </motion.div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => {
-            const shortDescription =
-              feature.price.split(" ").slice(0, 3).join(" ") + "...";
+        {/* GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7">
 
-            const slug = feature.title
-              .toLowerCase()
-              .replace(/[^a-z0-9]+/g, "-");
+          {features.map((item, i) => {
+            const slug = item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
             return (
               <motion.div
-                key={index}
-                whileHover={{ y: -6, scale: 1.03 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 12
-                }}
-                className="rounded-xl overflow-hidden bg-white shadow-xl text-2xl hover:shadow-2xl transition-all duration-300 cursor-pointer relative"
+                key={i}
+                whileHover={{ y: -6 }}
+                transition={{ type: "spring", stiffness: 180 }}
+                className="
+                  rounded-2xl overflow-hidden
+                  bg-[hsl(var(--card))]
+                  border border-[hsl(var(--border))]
+                  shadow-[var(--shadow-md)]
+                  hover:shadow-[var(--shadow-lg)]
+                  transition-all duration-300
+                "
               >
-                <div className="relative">
-                  <motion.img
-                    src={feature.image}
-                    alt={feature.title}
-                    className="w-full h-34 object-cover transition-transform duration-500 hover:scale-110"
+
+                {/* IMAGE */}
+                <div className="relative group">
+                  <img
+                    src={item.image}
+                    className="w-full h-60 object-cover group-hover:scale-110 transition duration-500"
                   />
 
-                  {/* Wishlist + Share */}
-                  <div className="absolute top-2 right-2 flex gap-2">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+
+                  {/* actions */}
+                  <div className="absolute top-3 right-3 flex gap-2">
 
                     <button
-                      onClick={() => handleWishlistToggle(feature.title)}
-                      className="p-1.5 rounded-full text-2xl bg-white/80 hover:bg-white shadow-md transition"
+                      onClick={() => toggleWishlist(item.title)}
+                      className="p-2 rounded-full bg-[hsl(var(--card))]/80 backdrop-blur hover:scale-110 transition"
                     >
                       <Heart
                         size={16}
                         className={
-                          wishlist.includes(feature.title)
-                            ? "text-red-500 fill-red-500"
-                            : "text-gray-700"
+                          wishlist.includes(item.title)
+                            ? "text-[hsl(var(--primary))] fill-[hsl(var(--primary))]"
+                            : "text-[hsl(var(--muted-foreground))]"
                         }
                       />
                     </button>
 
                     <button
-                      onClick={() => handleShare(feature.title)}
-                      className="p-1.5 rounded-full bg-white/80 hover:bg-white shadow-md transition"
+                      onClick={() => share(item.title)}
+                      className="p-2 rounded-full bg-[hsl(var(--card))]/80 backdrop-blur hover:scale-110 transition"
                     >
                       <Share2
                         size={16}
-                        className="text-gray-700"
+                        className="text-[hsl(var(--muted-foreground))]"
                       />
                     </button>
 
                   </div>
                 </div>
 
-                <div className="p-3 text-center hover:bg-gray-50 transition-colors duration-300">
-                  <h3 className="text-base font-semibold mb-1 text-primary">
-                    {feature.title}
+                {/* CONTENT */}
+                <div className="p-4 text-center">
+
+                  <h3 className="text-base font-semibold text-black">
+                    {item.title}
                   </h3>
 
-                  <p className="text-xs text-muted-foreground mb-2">
-                    {shortDescription}
+                  <p className="text-xs mt-1 text-[hsl(var(--muted-foreground))]">
+                    {item.price}
                   </p>
 
-                  <Link to={`/product/${slug}`}>
-                    <button
-                      className="text-xs font-medium text-rose-600 border border-rose-600 rounded-full px-3 py-1
-                      hover:bg-rose-600 hover:text-white transition-all duration-300"
-                    >
-                      Shop Now
-                    </button>
-                  </Link>
+                  {/* BUTTONS */}
+                  
+                  <div className="mt-4 flex flex-row gap-2">
 
-                </div>
+                      <Link to={`/product/${slug}`} className="flex-1">
+                        <button
+                          className="
+                            w-full py-2 rounded-full text-xs
+                            border border-[hsl(var(--secondary))]
+                            text-[hsl(var(--foreground))]
+                            hover:bg-[hsl(var(--primary))]
+                            hover:text-black
+                            transition
+                          "
+                        >
+                          View Details
+                        </button>
+                      </Link>
+
+                      <button
+                        className="
+                          flex-1 py-2 rounded-full text-xs
+                          flex items-center justify-center gap-2
+                          bg-[hsl(var(--primary))]
+                          text-black
+                          hover:opacity-90 transition
+                        "
+                      >
+                        Add to Cart <ShoppingCart size={16} />
+                      </button>
+
+                    </div>
+                  </div>
+
               </motion.div>
             );
           })}
-        </div>
 
+        </div>
       </div>
     </section>
   );

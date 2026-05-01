@@ -2,14 +2,11 @@ import { useState, useEffect } from "react";
 import {
   Search,
   Phone,
-  Clock,
-  MapPin,
   ChevronDown,
   User,
   LogOut,
   Menu,
   X,
-  Heart,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -21,22 +18,14 @@ import { toast } from "react-hot-toast";
 import type { User as SupabaseUser } from "@supabase/supabase-js";
 import logo from "@/assets/logo.jpeg";
 import AdvertRibbon from "./AdvertRibbon";
-import { ThemeToggle } from "@/components/ThemeToggle";
+
 export const Header = () => {
   const [user, setUser] = useState<SupabaseUser | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [searchQuery, setSearchQuery] = useState(""); // ✅ Added
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const COLORS = {
-    brightBlue: "#0052CC",
-    lightBlue: "#FF5B2E",
-    limeGreen: "#00FF66",
-    orange: "#71acdbff",
-    deepNavy: "#0D1B5E",
-  };
 
-  // ✅ Search handler
   const handleSearch = () => {
     if (!searchQuery.trim()) return;
     navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
@@ -46,11 +35,13 @@ export const Header = () => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
     });
+
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
     });
+
     return () => subscription.unsubscribe();
   }, []);
 
@@ -66,101 +57,71 @@ export const Header = () => {
   return (
     <header className="w-full font-sans">
       {/* --- Top Bar --- */}
-      <div className="bg-white border-b border-gray-200 py-2">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm text-[#0D1B5E]">
+      <div className="bg-background border-b border-border py-2">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-sm text-foreground">
 
-          {/* Contact Info */}
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 md:gap-8">
-
-            <a
-              href="tel:+254704904678"
-              className="flex items-center gap-1 hover:opacity-80"
-            >
-              <Phone className="text-black w-4 h- md:w-8 md:h-8" />
-              <span className="font-medium text-xl ">+254 112673764</span>
+          {/* Contact */}
+          <div className="flex items-center gap-6">
+            <a href="tel:+254112673764" className="flex items-center gap-2 hover:opacity-80">
+              <Phone className="text-primary w-5 h-5" />
+              <span className="font-medium text-lg">+254 112673764</span>
             </a>
-
-            
-
-            {/* <div className="flex items-center gap-1">
-              <Clock className="text-black w-4 h-4 md:w-8 md:h-8" />
-              <span className="font-medium text-sm ">Mon - Sat: 8am - 6pm</span>
-            </div> */}
           </div>
 
-          {/* Advertisement */}
+          {/* Advert */}
           <div className="w-[600px] mx-auto md:mx-0">
             <AdvertRibbon />
           </div>
 
-          {/* User Controls */}
-          <div className="flex items-center text-lg justify-center md:justify-end gap-3">
+          {/* User */}
+          <div className="flex items-center gap-3">
             {user ? (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={handleLogout}
-                className="text-2xl text-[#FF5B2E]"
-              >
-                <LogOut className="h-5 w-5 mr-1 text-[#FF5B2E]" /> Logout
+              <Button variant="ghost" size="sm" onClick={handleLogout} className="text-primary">
+                <LogOut className="h-5 w-5 mr-1" /> Logout
               </Button>
             ) : (
-              <Button variant="ghost" size="lg" asChild className="text-black text-2xl">
+              <Button variant="ghost" size="sm" asChild className="text-foreground">
                 <Link to="/auth">
-                  <User className="h-5 w-5 mr-1  text-[#FF5B2E]" /> Login
+                  <User className="h-5 w-5 mr-1 text-primary" /> Account
                 </Link>
               </Button>
             )}
-
-          <Cart   />
-            <Button variant="ghost" className="p-0">
-              <Heart className="h-7 w-7 text-[#FF5B2E]" />
-            </Button>
+            <Cart />
           </div>
         </div>
       </div>
 
-      {/* --- Main Navigation --- */}
+      {/* --- NAVBAR --- */}
       <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-lg"
+        className="sticky top-0 z-50 bg-white backdrop-blur-md shadow-md"
       >
         <div className="container mx-auto px-4 flex items-center justify-between py-3">
 
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0 flex items-center justify-center">
+          <Link to="/" className="flex-shrink-0">
             <motion.img
               src={logo}
-              alt="Jelimo Creatives Logo"
-              className="h-[160px] sm:h-[200px] object-contain"
+              alt="Peppa Beauty"
+              className="h-[140px] sm:h-[180px] object-contain"
               whileHover={{ scale: 1.05 }}
             />
           </Link>
 
           {/* Desktop Nav */}
-          <motion.nav
-            layout
-            className="hidden md:flex items-center gap-3 flex-1 justify-center text-[1rem] font-medium"
-          >
+          <nav className="hidden md:flex items-center gap-4 flex-1 justify-center">
+
+            {/* Categories */}
             <div
-              className="relative group"
+              className="relative"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
-              <Button
-                className="text-white flex items-center text-sm overflow-hidden relative"
-                style={{ backgroundColor: COLORS.orange }}
-              >
-                <motion.span whileHover={{ scale: 0.95 }}>
-                Skin Care & Beauty Products categories  
-                </motion.span>
-                <motion.div
-                  animate={{ rotate: isHovered ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <ChevronDown className="h-4 w-4 ml-2" />
+              <Button className="bg-primary text-primary-foreground flex items-center shadow-sm hover:shadow-md">
+                Skin Care & Beauty
+                <motion.div animate={{ rotate: isHovered ? 180 : 0 }}>
+                  <ChevronDown className="ml-2 h-4 w-4" />
                 </motion.div>
               </Button>
 
@@ -170,29 +131,21 @@ export const Header = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.25 }}
-                    className="absolute left-0 mt-2 w-60 text-xs rounded-lg shadow-xl z-[9999] bg-white"
+                    className="absolute mt-2 w-64 rounded-lg shadow-lg bg-card border border-border text-card-foreground"
                   >
                     {[
-                      ["Brush Buddies Charcoal Activated Toothpaste"],
-                      [  "Curel Hand Cream Handbag Size"],
-                      [  "Dermasil Face Cream"],
-                      [  "Old Spice Pure Sport Deoderant Travel Size"],
-                      [  "Pro Silk Body Lotion Aleo Vera",],
-                      [ "Spa Luxury Brazillian Body Butter",],
-                      [ "Spa Luxury Lotion"],
-                      [ "Spa Scentials Foot Cream"],
-                      [ "Spa Scentials Foot Scrub"],
-                      [ "Speed Stick For Ladies"],
-                      [ "Speed Stick Irish Spring For Men"],
-                      [ "Yardly Of London Charcoal Activated For Acne"],
-                    ].map(([label, link]) => (
+                      "Face Cream",
+                      "Body Lotion",
+                      "Hand Cream",
+                      "Deodorants",
+                      "Foot Care",
+                    ].map((item) => (
                       <Link
-                        key={label}
-                        to={link}
-                        className="block px-4 py-2 text-xs  hover:bg-white hover:text-[#FF5B2E]"
+                        key={item}
+                        to="/shop"
+                        className="block px-4 py-2 text-sm hover:bg-muted hover:text-primary"
                       >
-                        {label}
+                        {item}
                       </Link>
                     ))}
                   </motion.div>
@@ -200,120 +153,73 @@ export const Header = () => {
               </AnimatePresence>
             </div>
 
-            {/* Static Nav Links */}
+            {/* Links */}
             {[
               ["Home", "/"],
-           
               ["Shop", "/shop"],
-              ["Contact ", "/contact"],
-        
-         
+              ["Contact", "/contact"],
             ].map(([label, link]) => (
-              <Link to={link} key={label} className="text-lg relative group">
+              <Link key={label} to={link}>
                 <motion.div
                   whileHover={{
-                    scale: 0.8,
-                    backgroundColor: COLORS.orange,
+                    scale: 0.95,
+                    backgroundColor: "hsl(var(--primary))",
                     borderRadius: "9999px",
-                    transition: { duration: 0.3 },
                   }}
-                  className="px-3 py-2 rounded-lg relative"
+                  className="px-4 py-2 text-foreground"
                 >
-                  <motion.span
-                    whileHover={{ scale: 0.9 }}
-                    style={{
-                      color:
-                        label === "Feedback" ? COLORS.limeGreen : COLORS.deepNavy,
-                    }}
-                  >
-                    {label}
-                    {label === "Events & Tickets" && (
-                      <motion.div
-                        className="absolute -top-2 right-[-5%] w-2.5 h-2.5 rounded-full"
-                        style={{ backgroundColor: COLORS.orange }}
-                        animate={{
-                          scale: [1, 1.5, 1],
-                          opacity: [1, 0.6, 1],
-                        }}
-                        transition={{
-                          duration: 1.2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    )}
-                  </motion.span>
+                  {label}
                 </motion.div>
               </Link>
             ))}
-          </motion.nav>
+          </nav>
 
-          {/* -------- SEARCH -------- */}
-          <motion.div layout className="hidden md:flex max-w-sm w-full relative">
+          {/* Search */}
+          <div className="hidden md:flex max-w-sm w-full relative">
             <Search
               onClick={handleSearch}
-              className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 cursor-pointer"
-              style={{ color: COLORS.deepNavy }}
+              className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-foreground cursor-pointer"
             />
 
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              placeholder="Search Skin care and beauty products..."
-              className="pl-10 italic text-[2rem] rounded-full border border-gray-200 focus:ring-0"
-              style={{ borderColor: COLORS.lightBlue }}
+              placeholder="Search beauty products..."
+              className="pl-10 rounded-full border border-border bg-background text-foreground focus-visible:ring-2 focus-visible:ring-ring"
             />
-          </motion.div>
+          </div>
 
-          {/* Mobile Menu Toggle */}
-          <motion.button
-            whileTap={{ scale: 0.9 }}
+          {/* Mobile Toggle */}
+          <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 text-black"
+            className="md:hidden text-foreground"
           >
-            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </motion.button>
+            {menuOpen ? <X /> : <Menu />}
+          </button>
         </div>
 
-        {/* --- Mobile Menu --- */}
+        {/* Mobile Menu */}
         <AnimatePresence>
           {menuOpen && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden bg-white shadow-lg text-2xl flex flex-col items-center gap-2 pb-4"
+              className="md:hidden bg-background border-t border-border flex flex-col items-center py-4"
             >
               {[
                 ["Home", "/"],
                 ["Shop", "/shop"],
-                ["Contact Us", "/contact"],
-             
+                ["Contact", "/contact"],
               ].map(([label, link]) => (
                 <Link
                   key={label}
                   to={link}
                   onClick={() => setMenuOpen(false)}
-                  className="w-full text-center py-2 font-medium hover:bg-gray-100 transition relative"
+                  className="w-full text-center py-2 hover:bg-muted text-foreground"
                 >
                   {label}
-                  {label === "Events & Tickets" && (
-                    <motion.div
-                      className="absolute -top-1 right-[48%] w-2.5 h-2.5 rounded-full"
-                      style={{ backgroundColor: COLORS.orange }}
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [1, 0.6, 1],
-                      }}
-                      transition={{
-                        duration: 1.2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  )}
                 </Link>
               ))}
             </motion.div>

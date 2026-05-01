@@ -18,9 +18,11 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ["Poppins", "sans-serif"],
-        heading: ["Poppins", "sans-serif"],
+       fontFamily: {
+        indie: ["'Indie Flower'", "cursive"],
+        caveat: ["Caveat", "cursive"],
+        display: ["'Lavishly Yours'", "cursive"],
+        signika: ["Signika", "sans-serif"],
       },
 
       colors: {

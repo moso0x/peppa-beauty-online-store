@@ -1,6 +1,6 @@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Trash2, Minus, Plus } from "lucide-react";
+import { ShoppingBag , Trash2, Minus, Plus } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ export const Cart = () => {
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon" className="relative hover:bg-[#64B5F6]/10 transition">
-          <ShoppingCart className="h-5 w-5 text-[#64B5F6]" />
+          <ShoppingBag className="h-8 w-8 text-[#64B5F6]" />
           {getTotalItems() > 0 && (
             <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-[#6C63FF] text-white border-2 border-white shadow-md">
               {getTotalItems()}
@@ -22,7 +22,7 @@ export const Cart = () => {
       </SheetTrigger>
       <SheetContent className="w-full sm:max-w-lg bg-white border-l-4 ">
         <SheetHeader>
-          <SheetTitle className="text-[#64B5F6] font-bold text-lg">
+          <SheetTitle className="text-primary font-bold text-lg">
             Shopping Cart ({getTotalItems()}  items)
           </SheetTitle>
         </SheetHeader>
@@ -30,7 +30,7 @@ export const Cart = () => {
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center text-gray-500">
               <div className="bg-[#00BFA6]/10 p-6 rounded-full mb-4 shadow-inner">
-                <ShoppingCart className="h-20 w-20 text-[#FF5C26]" />
+                <ShoppingBag className="h-20 w-20 text-primary" />
               </div>
               <p className="text-lg font-medium text-[#1F1F1F]">Your cart is empty</p>
               <p className="text-sm text-gray-500 mt-1">

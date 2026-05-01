@@ -1,10 +1,9 @@
-import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useInView } from "react-intersection-observer";
+import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-/* Replace these with actual beauty product images later */
+/* Images (unchanged) */
 import featured_1 from "@/assets/featured/featured-1.jpg";
 import featured_2 from "@/assets/featured/featured-2.jpg";
 import featured_3 from "@/assets/featured/featured-3.jpg";
@@ -15,17 +14,27 @@ import featured_7 from "@/assets/featured/featured-7.jpg";
 import featured_8 from "@/assets/featured/featured-8.jpg";
 import featured_9 from "@/assets/featured/featured-9.jpg";
 import featured_10 from "@/assets/featured/featured-10.jpg";
+import featured_11 from "@/assets/featured/featured-11.jpg";
+import featured_12 from "@/assets/featured/featured-12.jpg";
+import featured_13 from "@/assets/featured/featured-13.jpg";
+import featured_14 from "@/assets/featured/featured-14.jpg";
+import featured_15 from "@/assets/featured/featured-15.jpg";
+import featured_16 from "@/assets/featured/featured-16.jpg";
+import featured_17 from "@/assets/featured/featured-17.jpg";
+import featured_18 from "@/assets/featured/featured-18.jpg";
+import featured_19 from "@/assets/featured/featured-19.jpeg";
+import featured_20 from "@/assets/featured/featured-20.jpg";
+import featured_21 from "@/assets/featured/featured-21.jpg";
+import featured_22 from "@/assets/featured/featured-22.jpg";
 
-/* -----------------------------------------
-   FEATURED PRODUCT DATA
------------------------------------------- */
+
+// ... keep all your imports as-is
 
 const featuredData = [
   {
     title: "Featured Beauty & Skincare Collections",
-
     images: [
-       featured_1,
+      featured_1,
       featured_2,
       featured_3,
       featured_4,
@@ -33,14 +42,23 @@ const featuredData = [
       featured_6,
       featured_7,
       featured_8,
-       featured_9,
-       featured_10,
-    
+      featured_9,
+      featured_10,
+      featured_11,
+      featured_12,
+      featured_13,
+      featured_14,
+      featured_15,
+      featured_16,
+      featured_17,
+      featured_18,
+      featured_19,
+      featured_20,
+      featured_21,
+      featured_22,
     ],
-
     description:
       "Explore luxurious skincare essentials formulated to hydrate, nourish, protect and reveal naturally radiant glowing skin.",
-
     labels: [
       "Vitamin C Serum",
       "Hydrating Face Cream",
@@ -48,290 +66,158 @@ const featuredData = [
       "Brightening Cleanser",
       "Rose Water Toner",
       "Night Repair Serum",
-      "SPF Sun Protection",
+      "SPF Protection",
       "Body Butter",
-      "Lip Care Set",
-      "Beauty Gift Collection",
-    ],
-
-    points: [
-      "Premium skincare for radiant glowing skin",
-      "Deep hydration and anti-aging formulas",
-      "Brightening solutions for even tone",
-      "Daily beauty essentials for healthy routines",
-      "Luxury collections and curated gift sets",
     ],
   },
 ];
 
-/* -----------------------------------------
-   MAIN COMPONENT
------------------------------------------- */
+/* -----------------------------
+MAIN COMPONENT
+------------------------------*/
 
 export default function FeaturedProductsCarousel() {
   return (
-    <section className="w-full py-20 px-4 bg-gradient-to-b from-rose-50 to-white space-y-16">
+    <section className="relative w-full py-28 px-4 bg-gradient-to-b from-rose-50 via-pink-50 to-white overflow-hidden">
 
-      {/* Heading */}
+      {/* Soft glow background */}
+      <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-pink-300/20 blur-[120px] rounded-full" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-rose-300/20 blur-[120px] rounded-full" />
+
+      {/* HEADER */}
       <motion.div
-        className="text-center mb-12"
-        initial={{ opacity: 0, y: 60 }}
+        initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: .8 }}
+        transition={{ duration: 0.8 }}
+        className="text-center mb-20 relative z-10"
       >
-        <motion.h2
-          className="text-4xl md:text-5xl font-semibold tracking-wide"
-          initial={{ opacity:0,y:40 }}
-          whileInView={{ opacity:1,y:0 }}
-          transition={{ duration:.7, delay:.2 }}
-        >
-          <span className="text-primary">Skin Care</span> |{" "}
-          <span className="text-secondary">Beauty</span> |{" "}
-          <span className="text-accent">Glow Essentials</span>
-        </motion.h2>
+        <p className="uppercase tracking-[0.35em] text-sm text-rose-500 font-medium">
+          Luxury Beauty Edit
+        </p>
 
-        <motion.p
-          className="mt-5 text-muted-foreground max-w-2xl mx-auto leading-8"
-          initial={{ opacity:0,y:40 }}
-          whileInView={{ opacity:1,y:0 }}
-          transition={{ duration:.7, delay:.35 }}
-        >
-          Discover luxurious skincare products designed for hydration,
-          radiance, nourishment and long-lasting beauty.
-        </motion.p>
+            <h2 className="font-indie text-5xl md:text-7xl font-semibold text-gray-900 leading-tight mt-4">
+            Radiance, Beauty & Glow
+            </h2>
+        <p className="max-w-2xl mx-auto mt-6 text-gray-600 text-lg leading-8">
+          Discover curated skincare collections designed for hydration,
+          restoration, and luminous beauty.
+        </p>
 
-        <motion.div
-          className="mt-5 flex justify-center"
-          initial={{ opacity:0, scaleX:0 }}
-          whileInView={{ opacity:1, scaleX:1 }}
-          transition={{ duration:.7, delay:.45 }}
-        >
-          <div className="w-32 h-1 bg-primary rounded-full" />
-        </motion.div>
-
+        <div className="mt-8 flex justify-center">
+          <div className="w-44 h-[3px] rounded-full bg-gradient-to-r from-pink-400 to-rose-300" />
+        </div>
       </motion.div>
 
-
-      {featuredData.map((service, index) => (
-        <ServiceRow
-          key={index}
-          service={service}
-        />
+      {/* CAROUSEL SECTION */}
+      {featuredData.map((section, idx) => (
+        <InfiniteCarousel key={idx} section={section} />
       ))}
-
     </section>
   );
 }
 
+/* -----------------------------
+INFINITE CAROUSEL
+------------------------------*/
 
-/* -----------------------------------------
-   ROW COMPONENT
------------------------------------------- */
+function InfiniteCarousel({ section }: any) {
+  // duplicate for infinite flow
+  const loopImages = [...section.images, ...section.images];
+  const [paused, setPaused] = useState(false);
 
-function ServiceRow({ service }: any) {
+  return (
+    <div className="relative max-w-7xl mx-auto">
 
-  const scrollRef = useRef<HTMLDivElement>(null);
+      {/* INNER CARD WRAPPER */}
+      <div className="rounded-[3rem] bg-white/70 backdrop-blur-xl border border-rose-100 shadow-2xl p-10 md:p-14 relative overflow-hidden">
 
-  const { ref: viewRef, inView } = useInView({
-    threshold: .2,
-    triggerOnce: true
-  });
+        {/* Floating glow */}
+        <div className="absolute -top-20 right-0 w-72 h-72 bg-pink-200/30 blur-[90px] rounded-full" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-rose-200/30 blur-[90px] rounded-full" />
 
-  const avalanche = {
-    hidden: {
-      opacity:0,
-      y:60
-    },
+        {/* TEXT */}
+        <div className="text-center mb-12 relative z-10">
+          <p className="text-rose-500 uppercase tracking-[0.3em] text-sm mb-3">
+            Featured Collection
+          </p>
 
-    visible:(i:number)=>({
-      opacity:1,
-      y:0,
-      transition:{
-        duration:.8,
-        delay:i*.15,
-        ease:[0.25,0.1,0.25,1] as [number,number,number,number]
-      }
-    })
-  };
+          <h3 className="text-3xl md:text-4xl font-semibold text-gray-900">
+            {section.title}
+          </h3>
 
-
-  const scrollLeft = () =>
-    scrollRef.current?.scrollBy({
-      left:-300,
-      behavior:"smooth"
-    });
-
-  const scrollRight = () =>
-    scrollRef.current?.scrollBy({
-      left:300,
-      behavior:"smooth"
-    });
-
-
-  /* Auto-scroll */
-  useEffect(()=>{
-    const interval=setInterval(()=>{
-
-      if(!scrollRef.current) return;
-
-      const container=scrollRef.current;
-
-      if(
-        container.scrollLeft +
-        container.offsetWidth >=
-        container.scrollWidth
-      ){
-        container.scrollTo({
-          left:0,
-          behavior:"smooth"
-        });
-
-      }else{
-        container.scrollBy({
-          left:300,
-          behavior:"smooth"
-        });
-      }
-
-    },5000);
-
-    return()=>clearInterval(interval);
-
-  },[]);
-
-
-
-  return(
-    <motion.div
-      ref={viewRef}
-      variants={avalanche}
-      initial="hidden"
-      animate={inView ? "visible":"hidden"}
-      custom={0}
-      className="bg-white shadow-xl rounded-[2rem] p-8 max-w-6xl mx-auto"
-    >
-
-      {/* TITLE */}
-      <motion.h3
-        variants={avalanche}
-        custom={1}
-        className="text-3xl font-semibold mb-4 text-primary"
-      >
-        {service.title}
-      </motion.h3>
-
-
-      <motion.p
-        variants={avalanche}
-        custom={2}
-        className="text-muted-foreground mb-8 leading-8"
-      >
-        {service.description}
-      </motion.p>
-
-
-      {/* CAROUSEL */}
-      <motion.div
-        variants={avalanche}
-        custom={3}
-        className="relative"
-      >
-
-        <motion.button
-          onClick={scrollLeft}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-primary text-white rounded-full p-3 shadow-md"
-          whileHover={{ scale:1.15 }}
-        >
-          <ArrowLeft size={20}/>
-        </motion.button>
-
-
-        <div
-          ref={scrollRef}
-          className="flex gap-5 overflow-x-auto scroll-smooth py-4"
-        >
-          {service.images.map((img:string,i:number)=>(
-            <motion.div
-              key={i}
-              variants={avalanche}
-              custom={4+i*.2}
-              className="flex-shrink-0 w-52"
-            >
-
-              <motion.img
-                src={img}
-                alt={service.labels[i]}
-                className="w-full h-44 rounded-2xl object-cover shadow-lg"
-                whileHover={{ scale:1.03 }}
-              />
-
-              <p className="text-center mt-3 text-sm font-semibold text-foreground">
-                {service.labels[i]}
-              </p>
-
-            </motion.div>
-          ))}
+          {/* <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+            {section.description}
+          </p> */}
         </div>
 
+        {/* INFINITE FLOW */}
+        <div className="relative overflow-hidden">
 
-        <motion.button
-          onClick={scrollRight}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-primary text-white rounded-full p-3 shadow-md"
-          whileHover={{ scale:1.15 }}
-        >
-          <ArrowRight size={20}/>
-        </motion.button>
+       <motion.div
+                className="flex gap-6 w-max"
+                animate={paused ? { x: "0%" } : { x: ["0%", "-50%"] }}
+                onHoverStart={() => setPaused(true)}
+                onHoverEnd={() => setPaused(false)}
+                transition={{
+                    duration: 120,
+                    ease: "linear",
+                    repeat: Infinity,
+                }}
+                >
+                            {loopImages.map((img: string, i: number) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="min-w-[260px] md:min-w-[300px] rounded-[2rem] overflow-hidden bg-white shadow-xl border border-rose-100"
+              >
+                <div className="relative">
+                  <img
+                    src={img}
+                    className="h-72 w-full object-cover"
+                  />
 
-      </motion.div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
 
+                  {/* <div className="absolute bottom-4 left-4 bg-white/90 px-4 py-1 rounded-full text-xs font-medium text-gray-700">
+                    Glow Care
+                  </div> */}
+                </div>
 
+                <div className="p-5">
+                  <h4 className="font-semibold text-lg text-gray-900">
+                    {section.labels[i % section.labels.length]}
+                  </h4>
+                  <p className="text-sm text-gray-500 mt-2 leading-6">
+                    Hydration + glow-enhancing skincare formula.
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
 
-      {/* POINTS */}
-      <motion.ul
-        variants={avalanche}
-        custom={6}
-        className="pt-12 grid md:grid-cols-3 gap-5 text-sm font-semibold"
-      >
-        {service.points.map((item:string,i:number)=>(
-          <motion.li
-            key={i}
-            variants={avalanche}
-            custom={7+i*.1}
-            className="flex gap-2"
+        </div>
+
+        {/* CTA */}
+        <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-pink-100 to-rose-200 text-black p-10 rounded-[2.5rem] shadow-xl relative z-10">
+
+          <div>
+            <h4 className="text-3xl md:text-4xl font-semibold">
+              Elevate Your Beauty Ritual
+            </h4>
+            <p className="opacity-90 mt-2">
+              Premium skincare curated for glowing, healthy skin.
+            </p>
+          </div>
+
+          <Link
+            to="/shop"
+            className="bg-white text-rose-500 px-8 py-4 rounded-full font-semibold flex items-center gap-2 hover:scale-105 transition"
           >
-            <span className="text-primary">
-              ✔
-            </span>
-
-            <span>
-              {item}
-            </span>
-
-          </motion.li>
-        ))}
-      </motion.ul>
-
-
-
-      {/* CTA */}
-      <motion.div
-        variants={avalanche}
-        custom={8}
-        className="flex justify-center mt-10"
-      >
-
-        <Link
-          to="/shop"
-          className="px-8 py-4 rounded-full bg-primary text-white font-semibold flex items-center gap-2 hover:scale-105 transition"
-        >
-          Shop Featured Products
-          <ArrowRight size={18}/>
-        </Link>
-
-      </motion.div>
-
-
-    </motion.div>
+            Shop Now <ArrowRight size={18} />
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 }

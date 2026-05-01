@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-/* BEAUTY IMAGES (replace with real glowing skin images) */
+/* IMAGES */
 import img1 from "@/assets/beauty/skin-1.jpg";
 import img2 from "@/assets/beauty/skin-2.jpg";
 import img3 from "@/assets/beauty/skin-3.jpg";
@@ -18,7 +18,6 @@ export const HeroCarousel = () => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 5000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -27,76 +26,120 @@ export const HeroCarousel = () => {
     setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <div className="relative w-full sm:py-16 h-[80vh] flex items-center overflow-hidden">
+    <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden bg-background">
 
-      {/* 🌸 FULL BACKGROUND (FADY PINK LUXURY) */}
-      <div className="absolute inset-0 bg-gray-200 " />
+      {/* 🌸 Soft Gradient Glow */}
+      <div className="absolute inset-0">
+        <div className="absolute top-[-100px] left-[-50px] w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full" />
+        <div className="absolute bottom-[-120px] right-[-60px] w-[500px] h-[500px] bg-secondary/20 blur-[120px] rounded-full" />
+      </div>
 
-      {/* soft glow overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(112, 87, 91, 0.4),transparent_60%)]" />
+      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 grid md:grid-cols-2 gap-16 items-center">
 
-      <div className="relative z-10 max-w-7xl mx-auto w-full px-6 grid md:grid-cols-2 gap-10 items-center">
+        {/* LEFT CONTENT */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="space-y-6"
+        >
 
-        {/* LEFT TEXT */}
-        <div className="text-left">
+          {/* Badge */}
+          <span className="inline-block px-4 py-1 text-black rounded-full bg-secondary font0bold  text-sm tracking-wide">
+           Luxurious Beauty & Skinccare Products
+          </span>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-white  leading-tight">
-            Luxurious Beauty & <br />
-            Skin Care Products
+          {/* Heading */}
+          <h1 className="text-4xl md:text-6xl leading-tight tracking-tight text-foreground">
+            <span className="block font-light italics">
+              Enhance Your
+            </span>
+            <span className=" font-indie block font-semibold text-primary">
+              Natural Glow
+            </span>
           </h1>
 
-          <p className="mt-5 text-xl text-[#6B3B4A]">
-            Discover premium skincare designed to enhance your natural glow,
-            confidence, and beauty.
+          {/* Description */}
+          <p className="text-lg text-muted-foreground max-w-md leading-relaxed">
+            Discover luxury skincare crafted to nourish, restore, and elevate your everyday beauty routine.
           </p>
 
-          <Link to="/shop">
-            <Button className="mt-8 px-8 py-4 rounded-full bg-[#C2185B] hover:bg-[#8E0E3C] text-white shadow-xl transition">
-              Shop Now
-            </Button>
-          </Link>
+          {/* CTA */}
+          <div className="flex gap-4 items-center">
+            <Link to="/shop">
+              <Button className="px-8 py-6 rounded-full bg-primary text-primary-foreground shadow-md hover:shadow-xl transition-all">
+                Shop Now
+              </Button>
+            </Link>
 
-        </div>
+            <Link to="/shop">
+              <button className="text-sm font-medium text-muted-foreground hover:text-primary transition">
+                Explore Products →
+              </button>
+            </Link>
+          </div>
+        </motion.div>
 
-        {/* RIGHT IMAGE CAROUSEL */}
-        <div className="relative w-full h-[520px]  overflow-hidden ">
-            <div className="relative w-[85%] md:w-[70%] h-[420px] mx-auto overflow-hidden rounded-3xl">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={current}
-                  src={slides[current]}
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    opacity: { duration: 1 },
-                    scale: { duration: 6, ease: "easeOut" }
-                  }}
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </AnimatePresence>
-            </div>
-          {/* soft overlay glow */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+        {/* RIGHT CAROUSEL */}
+        <div className="relative w-full h-[600px] flex items-center">
 
-          {/* arrows */}
+          {/* MAIN IMAGE */}
+          <div className="relative w-full h-full overflow-hidden rounded-[2.5rem] shadow-xl border border-border bg-card">
+
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={current}
+                src={slides[current]}
+                initial={{ opacity: 0, scale: 1.1, x: 40 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 1.05, x: -40 }}
+                transition={{ duration: 0.8 }}
+                className="absolute top-0 left-0 w-full h-full object-cover"
+              />
+            </AnimatePresence>
+
+            {/* overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+          </div>
+
+          {/* FLOATING IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 0.95, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="absolute -bottom-10 -left-6 w-44 h-44 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-xl border border-border bg-card"
+          >
+            <img
+              src={slides[(current + 1) % slides.length]}
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+
+          {/* ARROWS */}
           <button
             onClick={prev}
-            className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/70 p-2 rounded-full shadow hover:scale-110 transition"
+            className="absolute left-4 top-1/2 -translate-y-1/2 
+              bg-background/80 backdrop-blur-md 
+              border border-border
+              p-3 rounded-full shadow-md 
+              hover:scale-110 transition"
           >
-            <ChevronLeft />
+            <ChevronLeft className="text-foreground" />
           </button>
 
           <button
             onClick={next}
-            className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/70 p-2 rounded-full shadow hover:scale-110 transition"
+            className="absolute right-4 top-1/2 -translate-y-1/2 
+              bg-background/80 backdrop-blur-md 
+              border border-border
+              p-3 rounded-full shadow-md 
+              hover:scale-110 transition"
           >
-            <ChevronRight />
+            <ChevronRight className="text-foreground" />
           </button>
 
         </div>
-
       </div>
-    </div>
+    </section>
   );
 };

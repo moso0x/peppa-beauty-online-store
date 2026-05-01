@@ -3,45 +3,50 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight, MessageCircle, ShoppingCart } from "lucide-react";
 
-import totebags from "@/assets/tote-bags-hero.jpg";
-import totebag1 from "@/assets/thumbnails/totebag1.jpg";
-import totebag2 from "@/assets/thumbnails/totebag2.jpg";
-import cap1 from "@/assets/thumbnails/cap1.jpg";
-import cap2 from "@/assets/thumbnails/cap2.jpg";
-import cap3 from "@/assets/thumbnails/cap3.jpg";
-import cap4 from "@/assets/thumbnails/cap4.jpg";
-import rollup1 from "@/assets/thumbnails/rollup1.jpg";
-import rollup2 from "@/assets/thumbnails/rollup2.jpg"
-import rollup3 from "@/assets/thumbnails/rollup3.jpg"
-import mug1 from "@/assets/thumbnails/mug1.jpg";
-import mug2 from "@/assets/thumbnails/mug2.jpg";
-import mug3 from "@/assets/thumbnails/mug3.jpg";
-import mug4 from "@/assets/thumbnails/mug4.jpg";
-import mounted1 from "@/assets/thumbnails/mounted1.jpg"
-import mounted2 from "@/assets/thumbnails/mounted2.jpg"
-import hoodie1 from "@/assets/thumbnails/hoodie1.jpg"
-import hoodie2 from "@/assets/thumbnails/hoodie2.jpg"
-import hoodie3 from "@/assets/thumbnails/hoodie3.jpg"
-import hoodie4 from "@/assets/thumbnails/hoodie4.jpg"
-import custom_shirt from "@/assets/custom.jpg";
-import flyers from "@/assets/a5flyer.jpg";
-import flyer1 from "@/assets/thumbnails/flyer1.jpg";
-import flyer2 from "@/assets/thumbnails/flyer2.jpg";
-import shirt1 from "@/assets/thumbnails/shirt1.jpg";
-import shirt2 from "@/assets/thumbnails/shirt2.jpg";
-import shirt3 from "@/assets/thumbnails/shirt3.jpg";
-import shirt4 from "@/assets/thumbnails/shirt4.jpg";
-import rollup from "@/assets/rollup-banner.jpg";
-import caps from "@/assets/caps.jpg";
-import hoodie from "@/assets/hoodie.jpg";
-import mounted from "@/assets/thumbnails/mounted1.jpg";
-import corporate1 from "@/assets/thumbnails/corporate1.jpg";
-import corporate2 from "@/assets/thumbnails/corporate2.jpg";
-import corporate3 from "@/assets/thumbnails/corporate3.jpg";
-import corporate4 from "@/assets/thumbnails/corporate4.jpg";
-import corporate5 from "@/assets/thumbnails/corporate5.jpg";
-import corporate from "@/assets/thumbnails/corporate.jpg";
-import mug from "@/assets/mugs.jpg";
+import brushBuddiesImg from "@/assets/thumbnails/brushBuddiesImg3.jpg";
+import brushBuddiesImg2 from "@/assets/thumbnails/brushbuddiesimg2.jpg";
+import brushBuddiesImg3 from "@/assets/thumbnails/brushBuddiesImg3.jpg";
+
+import  curelHandCreamImg from "@/assets/thumbnails/curelHandCreamImg.jpeg";
+import  curelHandCreamImg2 from "@/assets/thumbnails/curelHandCreamImg2.jpeg";
+import  curelHandCreamImg3 from "@/assets/thumbnails/curelHandCreamImg3.jpeg"
+
+import  dermasilFaceCreamImg from "@/assets/thumbnails/dermasilFaceCreamImg.webp";
+import  dermasilFaceCreamImg2 from "@/assets/thumbnails/dermasilFaceCreamImg2.webp";
+import  dermasilFaceCreamImg3 from "@/assets/thumbnails/dermasilFaceCreamImg3.webp"
+
+import  oldSpiceDeoImg from "@/assets/thumbnails/oldSpiceDeoImg.jpg";
+import oldSpiceDeoImg2 from "@/assets/thumbnails/oldSpiceDeoImg2.webp";
+import  oldSpiceDeoImg3 from "@/assets/thumbnails/oldSpiceDeoImg3.webp"
+
+import proSilkLotionImg from "@/assets/thumbnails/proSilkLotionImg.jpg";
+import proSilkLotionImg2 from "@/assets/thumbnails/proSilkLotionImg2.jpg";
+import  proSilkLotionImg3 from "@/assets/thumbnails/proSilkLotionImg3.jpg"
+
+import spaFootCreamImg from "@/assets/thumbnails/spaFootCreamImg.jpg";
+import spaFootCreamImg2 from "@/assets/thumbnails/spaFootCreamImg2.jpg";
+import  spaFootCreamImg3 from "@/assets/thumbnails/spaFootCreamImg4.jpg"
+
+import speedStickLadiesImg from "@/assets/thumbnails/speedStickLadiesImg.jpg";
+import speedStickLadiesImg2 from "@/assets/thumbnails/speedStickLadiesImg2.jpg";
+import  speedStickLadiesImg3 from "@/assets/thumbnails/speedStickLadiesImg3.jpg"
+
+import spaFootScrubImg from "@/assets/thumbnails/spaFootScrubImg6.jpg";
+import spaFootScrubImg2 from "@/assets/thumbnails/spaFootScrubImg6.jpg";
+import  spaFootScrubImg3 from "@/assets/thumbnails/spaFootCreamImg5.jpg"
+
+import speedStickMenImg from "@/assets/thumbnails/speedStickMenImg.jpg";
+import speedStickMenImg2 from "@/assets/thumbnails/speedStickMenImg2.jpg";
+import  speedStickMenImg3 from "@/assets/thumbnails/speedStickMenImg3.jpg"
+
+import spaLuxuryLotionImg from "@/assets/thumbnails/spaLuxuryLotionImg.jpg";
+import spaLuxuryLotionImg2 from "@/assets/thumbnails/spaLuxuryLotionImg2.jpg";
+import  spaLuxuryLotionImg3 from "@/assets/thumbnails/spaLuxuryLotionImg3.jpg"
+
+import yardleyCharcoalImg from "@/assets/thumbnails/yardleyCharcoalImg.jpg";
+import yardleyCharcoalImg2 from "@/assets/thumbnails/yardleyCharcoalImg2.jpg";
+import yardleyCharcoalImg3 from "@/assets/thumbnails/yardleyCharcoalImg2.jpg";
+
 
 import { Header } from "@/components/Header";
 import FooterNew from "@/components/FooterNew";
@@ -50,110 +55,171 @@ import { Button } from "@/components/ui/button";
 
 // PRODUCT DATA
 const productData: any = {
-  "hydrating-facial-cleanser": {
-    title: "Tote Bags Printing",
-    price: "Starting at Ksh. 300",
-    image: totebags,
-    thumbs: [totebags, totebag1, totebag2],
+  "brush-buddies-charcoal-activated-toothpaste": {
+    title: "Brush Buddies Charcoal Activated Toothpaste",
+    price: "From Ksh. 1,200",
+    image: brushBuddiesImg,
+    thumbs: [brushBuddiesImg, brushBuddiesImg2, brushBuddiesImg3],
     description:
-      "Our custom tote bags are perfect for events, branding campaigns, corporate giveaways, and retail packaging. High-quality printing that lasts long with eco-friendly material options.",
-     features: [
-    "Ready for pickup in 2-3 days ",
-    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800 ",],
+      "Charcoal activated toothpaste that helps remove stains, fight bacteria, and promote fresh breath.",
+    features: [
+      "Whitening formula",
+      "Fights bad breath",
+      "Deep cleaning action",
+      "Daily oral care",
+    ],
   },
-  "vitamin-c-brightening-serum": {
-    title: "Custom Shirt Printing",
-    price: "From Ksh. 250",
-    image: custom_shirt,
-    thumbs: [shirt1,shirt2, shirt3, shirt4, ],
-    description: "High-quality T-shirt printing using screen printing, vinyl, and DTG methods. Perfect for events, promotions, and personal use.",
-     features: [
-    "Ready for pickup in 2-3 days ",
-    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800 ",],
-  },
-  "luxury-daily-moisturizer": {
-    title: "Hoodies Printing",
-    price: "From Ksh. 500 per piece",
-    image: hoodie,
-    thumbs: [ hoodie1, hoodie2, hoodie3,hoodie4],
-    description: "Stylish branded hoodies perfect for events, merchandise, and corporate branding.",
-      features: [
-    "Ready for pickup in 2-3 days ",
-    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800 ",],
-  },
-    title: "spf-50-radiance-sunscreen",
-  "": {
-    title: "Caps Printing",
-    price: "From Ksh. 200 per piece",
-    image: caps,
-    thumbs: [caps, cap1, cap2, cap3, cap4],
-    description: "Custom branded caps perfect for corporate promotions, events, and team branding.",
-      features: [
-    "Ready for pickup in 2-3 days ",
-    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800 ",],
-  },
-  "rose-water-balancing-toner": {
-    title: "A5 Flyers Printing",
-    price: "From Ksh. 100 per flyer",
-    image: flyers,
-    thumbs: [flyers, flyer1, flyer2],
-    description: "A5 flyers are great for marketing campaigns, promotions, and events. High-quality print on premium paper.",
-      features: [
-    "Ready for pickup in 2-3 days ",
-    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800 ",],
-  },
-  "glow-renewal-face-mask": {
-    title: "Roll-up Banner Printing",
-    price: "From Ksh. 2000 per piece",
-    image: rollup,
-    thumbs: [rollup, rollup1, rollup2, rollup3],
-    description: "Premium roll-up banners ideal for exhibitions, conferences, and business advertising.",
-      features: [
-    "Ready for pickup in 2-3 days ",
-    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800 ",],
-  },
-  "revitalizing-eye-cream": {
-    title: "Mounted Photos Printing",
-    price: "From Ksh. 700",
-    image: mounted,
-    thumbs: [mounted,  mounted1,  mounted2],
-     features: [
-    "Ready for pickup in 2-3 days ",
-    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800",],
-  },
-  "nourishing-body-oil": {
-    title: "Custom Mugs Printing",
-    price: "From Ksh. 400 per mug",
-    image: mug,
-    thumbs: [mug, mug1, mug2, mug3, mug4],
-     features: [
-    "Ready for pickup in 2-3 days ",
-    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800",],
-  },
-"clarifying-acne-treatment-serum": {
-  title: "Corporate Gifts Branding",
-  price: "From Ksh. 500 per item",
-  image: mug, // replace this with your corporate gift default image
-  thumbs: [corporate1, corporate2, corporate3, corporate4, corporate5, corporate], // replace with corporate gift images
-  description: "Premium branded corporate gifts ideal for events, promotions, awards, and company identity.",
-  features: [
-    "Ready for pickup in 2-3 days ",
-    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800 ",
-  ],
-},
-"luxury-skincare-gift-set": {
-  title: "Corporate Gifts Branding",
-  price: "From Ksh. 500 per item",
-  image: mug, // replace this with your corporate gift default image
-  thumbs: [corporate1, corporate2, corporate3, corporate4, corporate5, corporate], // replace with corporate gift images
-  description: "Premium branded corporate gifts ideal for events, promotions, awards, and company identity.",
-  features: [
-    "Ready for pickup in 2-3 days ",
-    "Shipping  Outside Mombasa, 2-days, Wells fargo from ksh.800 ",
-  ],
-},
-};
 
+  "curel-hand-cream-handbag-size": {
+    title: "Curel Hand Cream (Handbag Size)",
+    price: "From Ksh. 1,450",
+    image: curelHandCreamImg,  
+    thumbs: [curelHandCreamImg, curelHandCreamImg2, curelHandCreamImg3],
+    description:
+      "Compact moisturizing hand cream designed to keep hands soft, smooth, and hydrated on the go.",
+    features: [
+      "Deep hydration",
+      "Non-greasy formula",
+      "Travel-friendly size",
+      "Quick absorption",
+    ],
+  },
+
+  "dermasil-face-cream": {
+    title: "Dermasil Intensive Face Cream",
+    price: "From Ksh. 2,950",
+    image: dermasilFaceCreamImg,
+    thumbs: [dermasilFaceCreamImg, dermasilFaceCreamImg2, dermasilFaceCreamImg3],
+    description:
+      "Nourishing face cream that restores moisture balance and improves skin texture.",
+    features: [
+      "Hydration boost",
+      "Skin barrier repair",
+      "Smooth texture",
+      "Daily use safe",
+    ],
+  },
+
+  "old-spice-pure-sport-deodorant-travel-size": {
+    title: "Old Spice Pure Sport Deodorant (Travel Size)",
+    price: "From Ksh. 900",
+    image: oldSpiceDeoImg,
+    thumbs: [oldSpiceDeoImg, oldSpiceDeoImg2, oldSpiceDeoImg3],
+    description:
+      "Long-lasting deodorant offering fresh, sporty fragrance and all-day odor protection.",
+    features: [
+      "24h odor protection",
+      "Fresh scent",
+      "Travel size",
+      "Quick dry formula",
+    ],
+  },
+
+  "pro-silk-body-lotion-aloe-vera": {
+    title: "Pro Silk Aloe Vera Body Lotion",
+    price: "From Ksh. 1,650",
+    image: proSilkLotionImg,
+    thumbs: [proSilkLotionImg, proSilkLotionImg2, proSilkLotionImg3],
+    description:
+      "Soothing aloe vera body lotion that deeply hydrates and refreshes skin.",
+    features: [
+      "Aloe vera infusion",
+      "Deep hydration",
+      "Soft skin finish",
+      "Non-sticky feel",
+    ],
+  },
+
+  "spa-scentials-foot-cream": {
+    title: "Spa Scentials Foot Cream",
+    price: "From Ksh. 1,800",
+    image: spaFootCreamImg,
+    thumbs: [spaFootCreamImg, spaFootCreamImg2, spaFootCreamImg3],
+    description:
+      "Restorative foot cream that softens rough skin and repairs dryness.",
+    features: [
+      "Heel repair",
+      "Intense moisture",
+      "Softens cracked skin",
+      "Cooling effect",
+    ],
+  },
+
+  "spa-scentials-foot-scrub": {
+    title: "Spa Scentials Foot Scrub",
+    price: "From Ksh. 1,950",
+    image: spaFootScrubImg,
+    thumbs: [spaFootScrubImg, spaFootScrubImg2, spaFootScrubImg3],
+    description:
+      "Exfoliating foot scrub that removes dead skin and revitalizes tired feet.",
+    features: [
+      "Exfoliation",
+      "Smooth finish",
+      "Removes dead skin",
+      "Refreshing feel",
+    ],
+  },
+
+  "speed-stick-for-ladies": {
+    title: "Speed Stick Deodorant for Ladies",
+    price: "From Ksh. 850",
+    image: speedStickLadiesImg,
+    thumbs: [speedStickLadiesImg, speedStickLadiesImg2, speedStickLadiesImg3],
+    description:
+      "Gentle deodorant designed for women, offering long-lasting freshness and odor protection.",
+    features: [
+      "Long-lasting freshness",
+      "Gentle formula",
+      "Quick dry",
+      "Everyday protection",
+    ],
+  },
+
+  "spa-luxury-lotion": {
+    title: "Spa Luxury Body Lotion",
+    price: "From Ksh. 2,100",
+    image: spaLuxuryLotionImg,
+    thumbs: [spaLuxuryLotionImg, spaLuxuryLotionImg2, spaLuxuryLotionImg3],
+    description:
+      "Premium body lotion that deeply nourishes and enhances skin glow.",
+    features: [
+      "Deep nourishment",
+      "Glowing skin",
+      "Smooth texture",
+      "Fast absorption",
+    ],
+  },
+
+  "speed-stick-irish-spring-for-men": {
+    title: "Speed Stick Irish Spring Deodorant for Men",
+    price: "From Ksh. 950",
+    image: speedStickMenImg,
+    thumbs: [speedStickMenImg, speedStickMenImg2, speedStickMenImg3],
+    description:
+      "Strong, refreshing deodorant for men with long-lasting fragrance and protection.",
+    features: [
+      "24h protection",
+      "Fresh masculine scent",
+      "Non-sticky",
+      "All-day confidence",
+    ],
+  },
+
+  "yardly-of-london-charcoal-activated-for-acne": {
+    title: "Yardley of London Charcoal Acne Cleanser",
+    price: "From Ksh. 1,600",
+    image: yardleyCharcoalImg,
+    thumbs: [yardleyCharcoalImg, yardleyCharcoalImg2, yardleyCharcoalImg3],
+    description:
+      "Charcoal-based cleanser that targets acne, removes impurities, and unclogs pores.",
+    features: [
+      "Acne control",
+      "Deep pore cleansing",
+      "Oil balancing",
+      "Detox formula",
+    ],
+  },
+};
 
 export default function ProductDetails() {
   const { slug } = useParams();
@@ -427,7 +493,7 @@ export default function ProductDetails() {
           {/* RIGHT PRODUCT DETAILS */}
           <div>
             <h1 className="text-2xl font-bold mb-2">{product.title}</h1>
-            <p className="text-md text-green-600 font-semibold mb-4">{product.price}</p>
+            <p className="text-md text-pink-600 font-semibold mb-4">{product.price}</p>
             <p className="text-gray-700 text-sm leading-relaxed mb-6">{product.description}</p>
 
             {/* Product-specific attributes */}
@@ -461,7 +527,7 @@ export default function ProductDetails() {
            {/* Buttons on one line */}
 <div className="flex flex-wrap justify-center gap-4 mb-6">
   <a
-    href={`https://wa.me/+254704815725?text=${encodeURIComponent(
+    href={`https://wa.me/+254112673764?text=${encodeURIComponent(
       `Hello, I want to order ${product.title}.
 Quantity: ${quantity}
 Price per item: Ksh. ${basePrice}
@@ -469,7 +535,7 @@ Total: Ksh. ${totalPrice}
 Artwork: ${preview ? "Uploaded ✔️" : "No artwork uploaded"}`
     )}`}
     target="_blank"
-    className="flex-1 min-w-[100px] justify-center flex bg-green-600 text-white py-2 rounded-full hover:bg-green-700 text-center"
+    className="flex-1 min-w-[100px] justify-center flex bg-green-600 text-white py-2 rounded-full hover:bg-pink-300 text-center"
   >
     Order via WhatsApp
   </a>

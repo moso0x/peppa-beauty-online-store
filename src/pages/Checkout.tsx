@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Smartphone, CreditCard } from "lucide-react";
+import payment_methods from "@/assets/payment_methods.jpg.jpg";
 
 const Checkout = () => {
   const { items, getTotalPrice, clearCart } = useCart();
@@ -204,62 +205,20 @@ const Checkout = () => {
                       className="p-4 rounded-lg bg-[#F9FAFB] hover:bg-[#00FF6610] transition cursor-pointer"
                       onClick={() => setPaymentMethod("mpesa")}
                     >
-                      <div className="flex items-center gap-2">
-                        <RadioGroupItem value="mpesa" id="mpesa" />
-                        <Label
-                          htmlFor="mpesa"
-                          className="flex items-center gap-2 cursor-pointer"
-                        >
-                          <Smartphone className="h-5 w-5 text-[#00FF66]" />
-                          <span className="font-semibold text-[#0D1B5E]">
-                            M-Pesa
-                          </span>
-                        </Label>
-                      </div>
-
+                     
                       {paymentMethod === "mpesa" && (
                         <div className="mt-3 text-sm space-y-3">
                           <p className="font-medium text-[#1E57F0]">
-                            Choose Payment Option:
+                           Accepted Payment Method: 
                           </p>
-
-                          {/* STK Push */}
-                          <div className="bg-white/70 p-3 rounded-lg shadow-sm">
-                            <p className="text-xs text-[#0D1B5E] mb-2">
-                              Enter your phone number for STK Push:
-                            </p>
-                            <Input
-                              type="tel"
-                              placeholder="Enter Your Tel"
-                              value={formData.phone}
-                              onChange={(e) =>
-                                setFormData({
-                                  ...formData,
-                                  phone: e.target.value,
-                                })
-                              }
-                            />
-                            <Button
-                              size="sm"
-                              className="mt-2 bg-[#00FF66] text-black hover:bg-[#FF5B2E]"
-                              onClick={() => toast.success("STK push sent")}
-                            >
-                              Send STK Push
-                            </Button>
+                          <div>
+                            <img src={payment_methods} alt="M-Pesa" />
                           </div>
 
+                    
+                         
                           {/* Till Number */}
-                          <div className="bg-white/70 p-3 rounded-lg shadow-sm text-center">
-                            <p className="text-xs text-[#1E57F0] mb-1">
-                              Or pay via Till Number:
-                            </p>
-                            <p className="text-lg font-bold text-[#0D1B5E]">
-                              {tillNumber}
-                            </p>
-                            <p className="text-xs text-[#1E57F0]">
-                              Betty Jelimo Ngetich
-                            </p>
-                          </div>
+                        
                         </div>
                       )}
                     </div>

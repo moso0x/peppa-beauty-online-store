@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Chewy&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Delius&family=Elms+Sans:ital,wght@0,100..900;1,100..900&family=Gloria+Hallelujah&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Grape+Nuts&family=Indie+Flower&family=Lavishly+Yours&family=Mountains+of+Christmas:wght@400;700&family=Passions+Conflict&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Ribeye&family=Signika:wght@300..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,87 +9,42 @@
    GLOBAL TYPOGRAPHY
 ========================================= */
 
-html,
-body,
-* {
-  font-family: "Signerica", serif;
-}
+@layer base {
 
-
-/* =========================================
-   ANIMATIONS
-========================================= */
-
-@keyframes marquee-rtl {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.animate-marquee-rtl {
-  animation: marquee-rtl 40s linear infinite;
-}
-
-.animate-marquee-rtl:hover {
-  animation-play-state: paused;
-}
-
-
-@keyframes textGradient {
-  0% {
-    background-position: 0% 50%;
+  html {
+    font-family: "'Indie Flower'", "cursive";
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
   }
 
-  50% {
-    background-position: 100% 50%;
+  body {
+    @apply bg-background text-foreground;
+    font-family: inherit;
+    margin: 0;
+    padding: 0;
+    letter-spacing: 0.02em;
   }
 
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-text-gradient {
-  background-size: 200% auto;
-  animation: textGradient 4s ease infinite;
-}
-
-
-.marquee-container {
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
-}
-
-.marquee {
-  display: inline-flex;
-  animation: scroll-left 30s linear infinite;
-}
-
-.marquee.reverse {
-  animation: scroll-right 30s linear infinite;
-}
-
-@keyframes scroll-left {
-  from {
-    transform: translateX(0%);
+  *,
+  *::before,
+  *::after {
+    font-family: inherit !important;
+    @apply border-border;
+    box-sizing: border-box;
   }
 
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes scroll-right {
-  from {
-    transform: translateX(0%);
+  button,
+  input,
+  textarea,
+  select,
+  option {
+    font-family: inherit !important;
   }
 
-  to {
-    transform: translateX(50%);
+  h1,h2,h3,h4,h5,h6,
+  p,span,a,li,label,
+  div,section,article {
+    font-family: inherit !important;
   }
 }
 
@@ -96,108 +52,104 @@ body,
 /* =========================================
    PEPPA BEAUTY DESIGN TOKENS
 ========================================= */
-
 @layer base {
+
   :root {
 
+    /* =========================================
+       BRAND COLORS (FROM LOGO)
+       #F3C6CF → soft blush
+       #E8AEBB → rose pink
+       #F6D4C8 → peach
+       #F9E6EB → light wash
+       #FAF7F8 → off white
+    ========================================= */
+
     /* Backgrounds */
-    --background: 340 100% 98%;      /* soft blush white */
-    --foreground: 335 20% 22%;       /* warm plum text */
+    --background: 330 40% 98%;        /* #FAF7F8 */
+    --foreground: 340 15% 15%;        /* soft black */
 
     /* Cards */
-    --card: 340 70% 96%;
-    --card-foreground: 335 20% 22%;
+    --card: 330 60% 95%;              /* #F9E6EB */
+    --card-foreground: 340 15% 15%;
 
-    --popover: 340 70% 96%;
-    --popover-foreground: 335 20% 22%;
+    --popover: 330 60% 95%;
+    --popover-foreground: 340 15% 15%;
 
+    /* Primary (main brand pink) */
+    --primary: 340 65% 85%;           /* #F3C6CF */
+    --primary-foreground: 0 0% 0%;
 
-    /* Primary Luxury Rose */
-    --primary: 334 72% 55%;
-    --primary-foreground: 0 0% 100%;
+    /* Secondary (deeper pink) */
+    --secondary: 340 55% 78%;         /* #E8AEBB */
+    --secondary-foreground: 0 0% 0%;
 
-    /* Secondary Dusty Pink */
-    --secondary: 342 48% 82%;
-    --secondary-foreground: 335 20% 22%;
-
-    /* Accent Champagne Gold */
-    --accent: 42 58% 72%;
-    --accent-foreground: 335 20% 22%;
-
+    /* Accent (peach tone) */
+    --accent: 20 70% 86%;             /* #F6D4C8 */
+    --accent-foreground: 340 15% 15%;
 
     /* Muted */
-    --muted: 340 35% 92%;
-    --muted-foreground: 335 12% 40%;
+    --muted: 330 30% 92%;
+    --muted-foreground: 340 10% 40%;
 
-
-    /* Functional Colors */
+    /* Functional */
     --destructive: 0 72% 56%;
     --destructive-foreground: 0 0% 100%;
 
-    --info: 334 72% 55%;
+    --info: 340 55% 78%;
     --success: 150 42% 45%;
     --warning: 38 82% 60%;
 
-
-    /* Borders / Inputs */
-    --border: 340 25% 88%;
-    --input: 340 25% 88%;
-    --ring: 334 72% 55%;
-
+    /* Borders */
+    --border: 330 25% 88%;
+    --input: 330 25% 88%;
+    --ring: 340 65% 85%;
 
     /* Radius */
     --radius: 1rem;
 
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px hsl(335 30% 20% / 0.05);
-    --shadow-md: 0 4px 8px hsl(335 30% 20% / 0.08);
-    --shadow-lg: 0 10px 25px hsl(335 30% 20% / 0.12);
-
+    /* Shadows (soft pink tint) */
+    --shadow-sm: 0 1px 2px hsl(340 30% 20% / 0.05);
+    --shadow-md: 0 4px 8px hsl(340 30% 20% / 0.08);
+    --shadow-lg: 0 10px 25px hsl(340 30% 20% / 0.12);
 
     /* Transition */
     --transition-base: all .3s cubic-bezier(0.4,0,0.2,1);
   }
 
 
-  /* Dark mode (optional luxury dark theme) */
+  /* =========================================
+     DARK MODE (LUXURY SOFT DARK PINK)
+  ========================================= */
+
   .dark {
-    --background: 335 18% 10%;
-    --foreground: 340 40% 95%;
+    --background: 340 15% 10%;
+    --foreground: 330 40% 95%;
 
-    --card: 335 18% 14%;
-    --card-foreground: 340 40% 95%;
+    --card: 340 15% 14%;
+    --card-foreground: 330 40% 95%;
 
-    --popover: 335 18% 14%;
-    --popover-foreground: 340 40% 95%;
+    --popover: 340 15% 14%;
+    --popover-foreground: 330 40% 95%;
 
-    --primary: 334 72% 62%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 340 55% 70%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 335 16% 22%;
-    --secondary-foreground: 340 40% 95%;
+    --secondary: 340 30% 30%;
+    --secondary-foreground: 330 40% 95%;
 
-    --accent: 42 58% 68%;
-    --accent-foreground: 335 18% 10%;
+    --accent: 20 50% 60%;
+    --accent-foreground: 0 0% 0%;
 
-    --muted: 335 14% 20%;
-    --muted-foreground: 340 20% 70%;
+    --muted: 340 20% 20%;
+    --muted-foreground: 330 20% 70%;
 
     --destructive: 0 62% 42%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 335 14% 22%;
-    --input: 335 14% 22%;
-    --ring: 334 72% 62%;
+    --border: 340 20% 25%;
+    --input: 340 20% 25%;
+    --ring: 340 55% 70%;
   }
 
-
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: "Libre Baskerville", serif;
-  }
 }
