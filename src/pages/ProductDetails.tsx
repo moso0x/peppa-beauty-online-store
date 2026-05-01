@@ -7,6 +7,9 @@ import brushBuddiesImg from "@/assets/thumbnails/brushBuddiesImg3.jpg";
 import brushBuddiesImg2 from "@/assets/thumbnails/brushbuddiesimg2.jpg";
 import brushBuddiesImg3 from "@/assets/thumbnails/brushBuddiesImg3.jpg";
 
+
+
+
 import  curelHandCreamImg from "@/assets/thumbnails/curelHandCreamImg.jpeg";
 import  curelHandCreamImg2 from "@/assets/thumbnails/curelHandCreamImg2.jpeg";
 import  curelHandCreamImg3 from "@/assets/thumbnails/curelHandCreamImg3.jpeg"

@@ -9,7 +9,19 @@ import img1 from "@/assets/beauty/skin-1.jpg";
 import img2 from "@/assets/beauty/skin-2.jpg";
 import img3 from "@/assets/beauty/skin-3.jpg";
 
+import  oldSpiceDeoImg from "@/assets/thumbnails/oldSpiceDeoImg.jpg";
+import  curelHandCreamImg from "@/assets/thumbnails/curelHandCreamImg.jpeg";
+import brushBuddiesImg from "@/assets/thumbnails/brushBuddiesImg3.jpg";
+import proSilkLotionImg from "@/assets/thumbnails/proSilkLotionImg.jpg";
+import spaFootCreamImg from "@/assets/thumbnails/spaFootCreamImg.jpg";
+import speedStickLadiesImg from "@/assets/thumbnails/speedStickLadiesImg.jpg"
+import speedStickMenImg from "@/assets/thumbnails/speedStickMenImg.jpg";
+
+
+
 const slides = [img1, img2, img3];
+
+const slidess = [oldSpiceDeoImg, curelHandCreamImg, brushBuddiesImg , proSilkLotionImg , spaFootCreamImg, speedStickLadiesImg , speedStickMenImg];
 
 export const HeroCarousel = () => {
   const [current, setCurrent] = useState(0);
@@ -110,7 +122,7 @@ export const HeroCarousel = () => {
             className="absolute -bottom-10 -left-6 w-44 h-44 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-xl border border-border bg-card"
           >
             <img
-              src={slides[(current + 1) % slides.length]}
+              src={slidess[(current + 1) % slides.length]}
               className="w-full h-full object-cover"
             />
           </motion.div>
