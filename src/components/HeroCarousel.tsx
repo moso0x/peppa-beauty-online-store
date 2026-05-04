@@ -14,8 +14,8 @@ import curelHandCreamImg from "@/assets/thumbnails/curelHandCreamImg.jpeg";
 import brushBuddiesImg from "@/assets/thumbnails/brushBuddiesImg3.jpg";
 import proSilkLotionImg from "@/assets/thumbnails/proSilkLotionImg.jpg";
 import spaFootCreamImg from "@/assets/thumbnails/spaFootCreamImg.jpg";
-import speedStickLadiesImg from "@/assets/thumbnails/speedStickLadiesImg.jpg";
-import speedStickMenImg from "@/assets/thumbnails/speedStickMenImg.jpg";
+// import speedStickLadiesImg from "@/assets/thumbnails/speedStickLadiesImg.jpg";
+// import speedStickMenImg from "@/assets/thumbnails/speedStickMenImg.jpg";
 
 const slides = [img1, img2, img3];
 const slidess = [
@@ -24,8 +24,7 @@ const slidess = [
   brushBuddiesImg,
   proSilkLotionImg,
   spaFootCreamImg,
-  speedStickLadiesImg,
-  speedStickMenImg,
+
 ];
 
 const AUTO_PLAY_INTERVAL = 4200;

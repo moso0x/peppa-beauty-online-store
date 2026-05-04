@@ -149,7 +149,7 @@ const Shop = () => {
                           <button
                             onClick={() => setSelectedCategory(category)}
                             className={`
-                              w-full text-xs text-left px-3 py-2 rounded-lg transition
+                              w-full font-bold text-left px-3 py-2 rounded-lg transition
                               ${
                                 selectedCategory === category
                                   ? "bg-primary text-primary-foreground"
@@ -237,7 +237,7 @@ const Shop = () => {
                         {product.title}
                       </h3>
 
-                      <p className="text-sm text-pink-800 font-medium">
+                      <p className="text-lg text-pink-800 font-bold">
                         {formatPrice(product.price)}
                       </p>
 
@@ -249,8 +249,8 @@ const Shop = () => {
                         })}
                         className="mt-2 w-full bg-primary text-primary-foreground hover:opacity-90"
                       >
-                        <ShoppingCart className="h-4 w-4 mr-1"/>
-                        Add
+                        <ShoppingCart className="h-8 w-8 text-yellow-600 mr-1"/>
+                        Add to cart
                       </Button>
 
                     </Card>
