@@ -109,8 +109,8 @@ const Shop = () => {
         {/* HERO */}
         <section className="h-20 flex items-center justify-center bg-background border-b border-border">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-primary">Shop</h1>
-            <p className="text-sm text-muted-foreground">Home / Shop</p>
+            <h1 className="text-4xl font-bold text-black">Shop</h1>
+            <p className="text-lg italic text-secondary">Home / Shop</p>
           </div>
         </section>
 
@@ -237,7 +237,7 @@ const Shop = () => {
                         {product.title}
                       </h3>
 
-                      <p className="text-sm text-primary font-medium">
+                      <p className="text-sm text-pink-800 font-medium">
                         {formatPrice(product.price)}
                       </p>
 

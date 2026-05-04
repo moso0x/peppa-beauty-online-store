@@ -460,7 +460,7 @@ export default function ProductDetails() {
             <motion.img
               key={mainImage}
               src={mainImage}
-              className="w-full h-[420px] object-cover rounded-xl shadow-lg mb-4"
+              className="w-full h-[420px]  rounded-xl shadow-lg mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}

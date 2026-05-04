@@ -27,9 +27,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const AdminSettings = () => {
   const [storeSettings, setStoreSettings] = useState({
-    storeName: "Print Shop Kenya",
+    storeName: "Peppa Beauty online store",
     storeEmail: "info@printshop.ke",
-    storePhone: "+254 700 000 000",
+    storePhone: "+254 112673764",
     storeAddress: "Nairobi, Kenya",
     currency: "KES",
     timezone: "Africa/Nairobi",

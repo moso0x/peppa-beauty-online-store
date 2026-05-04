@@ -34,17 +34,7 @@ const featuredData = [
   {
     title: "Featured Beauty & Skincare Collections",
     images: [
-      featured_1,
-      featured_2,
-      featured_3,
-      featured_4,
-      featured_5,
-      featured_6,
-      featured_7,
-      featured_8,
-      featured_9,
-      featured_10,
-      featured_11,
+       featured_11,
       featured_12,
       featured_13,
       featured_14,
@@ -56,6 +46,17 @@ const featuredData = [
       featured_20,
       featured_21,
       featured_22,
+      featured_1,
+      featured_2,
+      featured_3,
+      featured_4,
+      featured_5,
+      featured_6,
+      featured_7,
+      featured_8,
+      featured_9,
+      featured_10,
+     
     ],
     description:
       "Explore luxurious skincare essentials formulated to hydrate, nourish, protect and reveal naturally radiant glowing skin.",
@@ -96,7 +97,7 @@ export default function FeaturedProductsCarousel() {
           Luxury Beauty Edit
         </p>
 
-            <h2 className="font-indie text-5xl md:text-7xl font-semibold text-gray-900 leading-tight mt-4">
+            <h2 className="font-indie text-5xl md:text-7xl font-semibold text-gray-900 italic leading-tight mt-4">
             Radiance, Beauty & Glow
             </h2>
         <p className="max-w-2xl mx-auto mt-6 text-gray-600 text-lg leading-8">
@@ -174,7 +175,7 @@ function InfiniteCarousel({ section }: any) {
                 <div className="relative">
                   <img
                     src={img}
-                    className="h-72 w-full object-cover"
+                    className="h-56 w-72 object-cover"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
@@ -202,8 +203,9 @@ function InfiniteCarousel({ section }: any) {
         <div className="mt-16 flex flex-col md:flex-row items-center justify-between gap-6 bg-gradient-to-r from-pink-100 to-rose-200 text-black p-10 rounded-[2.5rem] shadow-xl relative z-10">
 
           <div>
-            <h4 className="text-3xl md:text-4xl font-semibold">
-              Elevate Your Beauty Ritual
+            <h4 className="text-3xl md:text-4xl italic text-black font-semibold">
+             Pure Care. Real Glow.
+
             </h4>
             <p className="opacity-90 mt-2">
               Premium skincare curated for glowing, healthy skin.

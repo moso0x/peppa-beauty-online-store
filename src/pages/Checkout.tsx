@@ -244,37 +244,7 @@ const Checkout = () => {
             {/* RIGHT COLUMN */}
             <div className="space-y-6">
               {/* Order Summary */}
-              <Card className="bg-white shadow-md rounded-xl">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-[#0D1B5E] text-lg">
-                    Order Summary
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3 text-sm">
-                  {items.map((item) => (
-                    <div
-                      key={item.title}
-                      className="flex justify-between text-[#0D1B5E]"
-                    >
-                      <span>
-                        {item.title} x {item.quantity}
-                      </span>
-                      <span>Ksh. {item.price}</span>
-                    </div>
-                  ))}
-                  <div className="border-t pt-3 flex justify-between font-bold text-[#0D1B5E] text-lg">
-                    <span>Total</span>
-                    <span>Ksh. {getTotalPrice().toLocaleString()}</span>
-                  </div>
-                  <Button
-                    className="w-full bg-[#00FF66] text-black hover:bg-[#FF5B2E]"
-                    onClick={handleSubmit}
-                    disabled={loading}
-                  >
-                    {loading ? "Processing..." : "Place Order"}
-                  </Button>
-                </CardContent>
-              </Card>
+              
 
               {/* Shipping Info (below summary) */}
               <Card className="bg-white shadow-md rounded-xl">
@@ -314,6 +284,37 @@ const Checkout = () => {
                       setFormData({ ...formData, notes: e.target.value })
                     }
                   />
+                </CardContent>
+              </Card>
+              <Card className="bg-white shadow-md rounded-xl">
+                <CardHeader className="pb-2">
+                  <CardTitle className="text-[#0D1B5E] text-lg">
+                    Order Summary
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3 text-sm">
+                  {items.map((item) => (
+                    <div
+                      key={item.title}
+                      className="flex justify-between text-[#0D1B5E]"
+                    >
+                      <span>
+                        {item.title} x {item.quantity}
+                      </span>
+                      <span>Ksh. {item.price}</span>
+                    </div>
+                  ))}
+                  <div className="border-t pt-3 flex justify-between font-bold text-[#0D1B5E] text-lg">
+                    <span>Total</span>
+                    <span>Ksh. {getTotalPrice().toLocaleString()}</span>
+                  </div>
+                  <Button
+                    className="w-32 flex mx-auto justify-center  bg-secondary font-bold text-black hover:bg-primary"
+                    onClick={handleSubmit}
+                    disabled={loading}
+                  >
+                    {loading ? "Processing..." : "Place Order"}
+                  </Button>
                 </CardContent>
               </Card>
             </div>

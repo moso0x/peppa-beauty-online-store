@@ -80,14 +80,15 @@ export const Header = () => {
                 <LogOut className="h-5 w-5 mr-1" /> Logout
               </Button>
             ) : (
-              <Button variant="ghost" size="sm" asChild className="text-foreground">
+              <Button variant="ghost" size="sm" asChild className="text-foreground text-sm font-bold">
                 <Link to="/auth">
-                  <User className="h-5 w-5 mr-1 text-primary" /> Account
+                  <User className="h-8 w-8 mr-1 text-black" /> Account
                 </Link>
               </Button>
             )}
-            <Cart />
+           
           </div>
+           <Cart  />
         </div>
       </div>
 

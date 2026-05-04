@@ -21,25 +21,63 @@ interface Customer {
   full_name: string | null;
   avatar_url: string | null;
   created_at: string;
+  role?: string; // optional (for admin check)
 }
 
 const AdminCustomers = () => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
 
   useEffect(() => {
-    fetchCustomers();
+    checkAdmin();
   }, []);
+
+  const checkAdmin = async () => {
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        toast.error("Not authenticated");
+        setIsAdmin(false);
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .single();
+
+      if (error) throw error;
+
+      if (data?.role !== "admin") {
+        toast.error("Access denied: Admins only");
+        setIsAdmin(false);
+        return;
+      }
+
+      setIsAdmin(true);
+      fetchCustomers();
+    } catch (error) {
+      console.error("Admin check failed:", error);
+      toast.error("Failed to verify admin access");
+      setIsAdmin(false);
+    }
+  };
 
   const fetchCustomers = async () => {
     try {
       const { data, error } = await supabase
         .from("profiles")
-        .select("*")
+        .select("id, email, full_name, avatar_url, created_at")
         .order("created_at", { ascending: false });
 
       if (error) throw error;
+
       setCustomers(data || []);
     } catch (error) {
       console.error("Error fetching customers:", error);
@@ -49,11 +87,13 @@ const AdminCustomers = () => {
     }
   };
 
-  const filteredCustomers = customers.filter(
-    (customer) =>
-      customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      customer.full_name?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredCustomers = customers.filter((customer) => {
+    const email = customer.email?.toLowerCase() || "";
+    const name = customer.full_name?.toLowerCase() || "";
+    const search = searchTerm.toLowerCase();
+
+    return email.includes(search) || name.includes(search);
+  });
 
   const getInitials = (name: string | null, email: string) => {
     if (name) {
@@ -64,13 +104,21 @@ const AdminCustomers = () => {
         .toUpperCase()
         .slice(0, 2);
     }
-    return email[0].toUpperCase();
+    return email?.[0]?.toUpperCase() || "?";
   };
 
-  if (loading) {
+  if (isAdmin === null || loading) {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+      </div>
+    );
+  }
+
+  if (!isAdmin) {
+    return (
+      <div className="flex items-center justify-center h-64 text-red-500 font-semibold">
+        Access Denied — Admins Only
       </div>
     );
   }
@@ -83,7 +131,9 @@ const AdminCustomers = () => {
     >
       <div>
         <h2 className="text-3xl font-bold">Customers</h2>
-        <p className="text-muted-foreground">View and manage customer accounts</p>
+        <p className="text-muted-foreground">
+          View and manage customer accounts
+        </p>
       </div>
 
       {/* Stats */}
@@ -99,6 +149,7 @@ const AdminCustomers = () => {
             </div>
           </CardContent>
         </Card>
+
         <Card>
           <CardContent className="p-6 flex items-center gap-4">
             <div className="p-3 bg-green-500/10 rounded-full">
@@ -121,13 +172,16 @@ const AdminCustomers = () => {
             </div>
           </CardContent>
         </Card>
+
         <Card>
           <CardContent className="p-6 flex items-center gap-4">
             <div className="p-3 bg-blue-500/10 rounded-full">
               <Mail className="text-blue-500" size={24} />
             </div>
             <div>
-              <p className="text-sm text-muted-foreground">Verified Emails</p>
+              <p className="text-sm text-muted-foreground">
+                Verified Emails
+              </p>
               <p className="text-2xl font-bold">{customers.length}</p>
             </div>
           </CardContent>
@@ -138,7 +192,10 @@ const AdminCustomers = () => {
       <Card>
         <CardContent className="p-4">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={20} />
+            <Search
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+              size={20}
+            />
             <Input
               placeholder="Search customers by name or email..."
               value={searchTerm}
@@ -157,6 +214,7 @@ const AdminCustomers = () => {
             All Customers ({filteredCustomers.length})
           </CardTitle>
         </CardHeader>
+
         <CardContent>
           <Table>
             <TableHeader>
@@ -166,17 +224,24 @@ const AdminCustomers = () => {
                 <TableHead>Joined</TableHead>
               </TableRow>
             </TableHeader>
+
             <TableBody>
               {filteredCustomers.map((customer) => (
                 <TableRow key={customer.id}>
                   <TableCell>
                     <div className="flex items-center gap-3">
                       <Avatar>
-                        <AvatarImage src={customer.avatar_url || undefined} />
+                        <AvatarImage
+                          src={customer.avatar_url || undefined}
+                        />
                         <AvatarFallback>
-                          {getInitials(customer.full_name, customer.email)}
+                          {getInitials(
+                            customer.full_name,
+                            customer.email
+                          )}
                         </AvatarFallback>
                       </Avatar>
+
                       <div>
                         <p className="font-medium">
                           {customer.full_name || "No name"}
@@ -187,9 +252,13 @@ const AdminCustomers = () => {
                       </div>
                     </div>
                   </TableCell>
+
                   <TableCell>{customer.email}</TableCell>
+
                   <TableCell>
-                    {new Date(customer.created_at).toLocaleDateString()}
+                    {new Date(
+                      customer.created_at
+                    ).toLocaleDateString()}
                   </TableCell>
                 </TableRow>
               ))}

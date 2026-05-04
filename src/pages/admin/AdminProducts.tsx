@@ -55,21 +55,11 @@ interface Product {
 }
 
 const categories = [
-  "Apparel",
-  "Mugs",
-  "Banners",
-  "Stickers",
-  "Calendars",
-  "Promotional Items",
-  "Corporate Gifts",
-  "Print Materials",
-  "Stationery",
-  "Gift Sets",
-  "Accessories",
-  "Packaging",
-  "Outdoor Branding",
-  "Home and Living",
-  "Business Services",
+" Face Cream",
+"Body Lotion",
+"Hand Cream",
+"Deodorants",
+"Foot Care",
 ];
 
 const AdminProducts = () => {

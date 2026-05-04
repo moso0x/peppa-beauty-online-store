@@ -4,39 +4,33 @@ import { Link } from "react-router-dom";
 import { Heart, Share2, ShoppingCart } from "lucide-react";
 import toast from "react-hot-toast";
 
-/* images */
-import cleanser from "@/assets/skincare/cleanser.jpg";
-import vitaminC from "@/assets/skincare/vitamin-c-serum.jpg";
-import moisturizer from "@/assets/skincare/moisturizer.jpg";
-import sunscreen from "@/assets/skincare/sunscreen.jpg";
-import toner from "@/assets/skincare/toner.jpg";
-import faceMask from "@/assets/skincare/face-mask.jpg";
-import eyeCream from "@/assets/skincare/eye-cream.jpg";
-import bodyOil from "@/assets/skincare/body-oil.jpg";
-import acneSerum from "@/assets/skincare/acne-serum.jpg";
-import beautySet from "@/assets/skincare/beauty-set.jpg";
+
+
+import featured_10 from "@/assets/featured/featured-10.jpg";
+import featured_11 from "@/assets/featured/featured-11.jpg";
+import featured_12 from "@/assets/featured/featured-12.jpg";
+import featured_13 from "@/assets/featured/featured-13.jpg";
+import featured_14 from "@/assets/featured/featured-14.jpg";
+import featured_15 from "@/assets/featured/featured-15.jpg";
+import featured_16 from "@/assets/featured/featured-16.jpg";
+import featured_17 from "@/assets/featured/featured-17.jpg";
+import featured_18 from "@/assets/featured/featured-18.jpg";
+import featured_19 from "@/assets/featured/featured-19.jpeg";
+import featured_20 from "@/assets/featured/featured-20.jpg";
 
 const features = [
-  { title: "Brush Buddies Charcoal Activated Toothpaste", price: "From Ksh. 1,850", image: cleanser },
-  { title: "Curel Hand cream Handbag Size", price: "From Ksh. 850.00", image: vitaminC },
-  { title: "Dermasil Face Cream", price: "From Ksh. 1,400", image: moisturizer },
-  { title: "Old Spice Pure Sport Deoderant Travel size", price: "From Ksh. 1,050", image: sunscreen },
-  { title: "Pro Silk Body Lotion Aloe Vera", price: "From Ksh. 1,400", image: toner },
-  { title: "SPA Scentials Foot Cream", price: "From Ksh. 2,300", image: faceMask },
-  { title: "SPA Scentials Foot Scrub", price: "From Ksh. 3,450", image: eyeCream },
-  { title: "Speed Stick for Ladies", price: "From Ksh. 2,100", image: bodyOil },
-  { title: "SPA Luxury Lotion", price: "From Ksh. 2,850", image: acneSerum },
-  { title: "Speed Stick Irish Spring for Men", price: "From Ksh. 5,800", image: beautySet },
-    { title: "Yardly of London Charcoal Activated for Acne", price: "From Ksh. 5,800", image: beautySet }
+  { title: "Brush Buddies Charcoal Activated Toothpaste", price: "Starting From Ksh. 1,850", image: featured_10 },
+  { title: "Curel Hand cream Handbag Size", price: "Starting From Ksh. 850.00", image: featured_11},
+  { title: "Dermasil Face Cream", price: "Starting From Ksh. 1,400", image: featured_12 },
+  { title: "Old Spice Pure Sport Deoderant Travel size", price: "Starting From Ksh. 1,050", image: featured_13},
+  { title: "Pro Silk Body Lotion Aloe Vera", price: "Starting From Ksh. 1,400", image: featured_14 },
+  { title: "SPA Scentials Foot Cream", price: " Starting From Ksh. 2,300", image: featured_15 },
+  { title: "SPA Scentials Foot Scrub", price: " Starting From Ksh. 3,450", image: featured_16 },
+  { title: "Speed Stick for Ladies", price: " Starting From Ksh. 2,100", image: featured_17 },
+  { title: "SPA Luxury Lotion", price: "Starting From Ksh. 2,850", image: featured_18},
+  { title: "Speed Stick Irish Spring for Men", price: " Starting From Ksh. 5,800", image: featured_19},
+    { title: "Yardly of London Charcoal Activated for Acne", price: "Starting From Ksh. 5,800", image: featured_20 }
 ];
-//  { title: "Luxury Daily Moisturizer", price: "From Ksh. 2,950", image: moisturizer },
-//   { title: "SPF 50 Radiance Sunscreen", price: "From Ksh. 2,600", image: sunscreen },
-//   { title: "Rose Water Toner", price: "From Ksh. 1,650", image: toner },
-//   { title: "Glow Renewal Face Mask", price: "From Ksh. 2,300", image: faceMask },
-//   { title: "Revitalizing Eye Cream", price: "From Ksh. 3,450", image: eyeCream },
-//   { title: "Nourishing Body Oil", price: "From Ksh. 2,100", image: bodyOil },
-//   { title: "Acne Treatment Serum", price: "From Ksh. 2,850", image: acneSerum },
-//   { title: "Luxury Skincare Set", price: "From Ksh. 5,800", image: beautySet }
 
 export const FeaturesSection = () => {
   const [wishlist, setWishlist] = useState<string[]>([]);
@@ -75,7 +69,7 @@ export const FeaturesSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-semibold">
+          <h2 className="text-4xl italic md:text-5xl font-semibold">
             Luxury Beauty & Skincare Essentials
           </h2>
 
@@ -151,7 +145,7 @@ export const FeaturesSection = () => {
                     {item.title}
                   </h3>
 
-                  <p className="text-xs mt-1 text-[hsl(var(--muted-foreground))]">
+                  <p className="text-xs font-bold  mt-1 text-pink-800">
                     {item.price}
                   </p>
 
@@ -162,10 +156,11 @@ export const FeaturesSection = () => {
                       <Link to={`/product/${slug}`} className="flex-1">
                         <button
                           className="
-                            w-full py-2 rounded-full text-xs
+                            w-full py-2 rounded-full 
                             border border-[hsl(var(--secondary))]
                             text-[hsl(var(--foreground))]
                             hover:bg-[hsl(var(--primary))]
+                            font-bold text-lg
                             hover:text-black
                             transition
                           "
@@ -176,10 +171,10 @@ export const FeaturesSection = () => {
 
                       <button
                         className="
-                          flex-1 py-2 rounded-full text-xs
+                          flex-1 py-2 rounded-full text-lg
                           flex items-center justify-center gap-2
                           bg-[hsl(var(--primary))]
-                          text-black
+                          text-black font-bold
                           hover:opacity-90 transition
                         "
                       >

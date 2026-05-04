@@ -32,6 +32,7 @@ import RouteChangeLoader from "@/components/RouteChangeLoader";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import UpdatePassword from "./pages/UpdatePassword";
+import {FeaturesSection} from '@/components/FeaturesSection'
 
 const queryClient = new QueryClient();
 
@@ -48,17 +49,17 @@ const App = () => (
               duration: 3000,
               style: {
                 background: 'hsl(var(--card))',
-                color: 'hsl(var(--card-foreground))',
+                color: 'hsl(var())',
                 border: '1px solid hsl(var(--border))',
               },
               success: {
                 style: {
-                  color: 'green',
-                  border: '1px solid darkgreen',
+                  color: 'black',
+                  border: '1px solid pink',
                 },
                 iconTheme: {
                   primary: 'white',
-                  secondary: 'green',
+                  secondary: 'pink',
                 },
               },
               error: {
@@ -89,6 +90,7 @@ const App = () => (
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/featuresSection" element={<FeaturesSection />} />
               <Route path="/auth" element={<Auth />} />
               <Route path="/price-list" element={<PriceList />} />
               <Route path="/shop" element={<Shop />} />

@@ -1,6 +1,6 @@
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag , Trash2, Minus, Plus } from "lucide-react";
+import { ShoppingCart  , Trash2, Minus, Plus } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { Badge } from "@/components/ui/badge";
 import { useNavigate } from "react-router-dom";
@@ -11,10 +11,17 @@ export const Cart = () => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative hover:bg-[#64B5F6]/10 transition">
-          <ShoppingBag className="h-8 w-8 text-[#64B5F6]" />
+        <Button
+          variant="ghost"
+          className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-full 
+                    bg-white shadow-lg border border-gray-200
+                    hover:scale-110 hover:shadow-2xl transition-all duration-300"
+        >
+  <ShoppingCart className="h-8 w-8 sm:h-10 sm:w-10 text-pink-600" />
           {getTotalItems() > 0 && (
-            <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs bg-[#6C63FF] text-white border-2 border-white shadow-md">
+            <Badge className="absolute -top-2 -right-2 h-7 w-7 sm:h-8 sm:w-8 
+           flex items-center justify-center text-xs 
+           bg-primary text-black border-2 border-white shadow-md">
               {getTotalItems()}
             </Badge>
           )}
@@ -30,9 +37,9 @@ export const Cart = () => {
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-center text-gray-500">
               <div className="bg-[#00BFA6]/10 p-6 rounded-full mb-4 shadow-inner">
-                <ShoppingBag className="h-20 w-20 text-primary" />
+                <ShoppingCart className="h-20 w-20 text-pink-600" />
               </div>
-              <p className="text-lg font-medium text-[#1F1F1F]">Your cart is empty</p>
+              <p className="text-lg font-medium text-pink-300">Your cart is empty</p>
               <p className="text-sm text-gray-500 mt-1">
                 Add some items to get started
               </p>
@@ -91,7 +98,7 @@ export const Cart = () => {
                 </div>
 
                 <Button
-                  className="w-[40%] bg-[#64B5F6] rounded-full text-white font-semibold  text-xs flex mx-auto  items-center justify-center hover:bg-blue-300"
+                  className="w-[40%] bg-secondary rounded-full text-white font-semibold  text-xs flex mx-auto  items-center justify-center hover:primary"
                   size="lg"
                   onClick={() => navigate("/checkout")}
                 >
